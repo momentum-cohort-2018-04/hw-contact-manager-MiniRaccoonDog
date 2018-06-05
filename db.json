@@ -1,6 +1,211 @@
 {
-  "contacts": [
-    {"id": 1},
-    {"id": 2}
+  "contacts": [{
+      "id": 0,
+      "name": {
+        "title": "miss",
+        "first": "annette",
+        "last": "dunn"
+      },
+      "dob": "1966-01-25 11:36:50",
+      "email": "annette.dunn@example.com",
+      "phone": "(834)-307-0376",
+      "company": "Multideo",
+      "title": "Human Resource Officer"
+    },
+    {
+      "id": 1,
+      "name": {
+        "title": "mr",
+        "first": "sammy",
+        "last": "chapman"
+      },
+      "email": "sammy.chapman@example.com",
+      "dob": "1982-03-24 21:32:04",
+      "phone": "026 2236 6153",
+      "company": "Company X",
+      "title": "Sports Physical Therapist"
+    },
+    {
+      "id": 2,
+      "name": {
+        "title": "mr",
+        "first": "sammy",
+        "last": "chapman"
+      },
+      "email": "sammy.chapman@example.com",
+      "dob": "1982-03-24 21:32:04",
+      "phone": "026 2236 6153",
+      "company": "Mars Enterprises",
+      "title": "Property Appraiser"
+    },
+    {
+      "id": 3,
+      "name": {
+        "title": "mr",
+        "first": "nicolas",
+        "last": "dubois"
+      },
+      "email": "nicolas.dubois@example.com",
+      "dob": "1989-09-12 20:06:09",
+      "phone": "03-41-13-10-01",
+      "company": "Parableutions",
+      "title": "Title Investigator"
+    },
+    {
+      "id": 4,
+      "name": {
+        "title": "mr",
+        "first": "mads",
+        "last": "johansen"
+      },
+      "email": "mads.johansen@example.com",
+      "dob": "1994-08-12 03:51:11",
+      "phone": "33173995",
+      "company": "OYONU",
+      "title": "Horticultural Services Supervisor"
+    },
+    {
+      "id": 5,
+      "name": {
+        "title": "ms",
+        "first": "marta",
+        "last": "fuchs"
+      },
+      "email": "marta.fuchs@example.com",
+      "dob": "1956-10-16 22:07:22",
+      "phone": "0200-8804808",
+      "company": "medivu",
+      "title": "Clinical Medical Assistant"
+    },
+    {
+      "id": 6,
+      "name": {
+        "title": "mr",
+        "first": "mischa",
+        "last": "claus"
+      },
+      "email": "mischa.claus@example.com",
+      "dob": "1968-02-21 10:24:05",
+      "phone": "(869)-351-3735",
+      "company": "Forestics",
+      "title": "General Contractor"
+    },
+    {
+      "id": 7,
+      "name": {
+        "title": "mr",
+        "first": "mathieu",
+        "last": "vincent"
+      },
+      "email": "mathieu.vincent@example.com",
+      "dob": "1968-10-17 08:57:21",
+      "phone": "01-07-79-26-45",
+      "company": "Sapling Technologies",
+      "title": "Executive Chef"
+    },
+    {
+      "id": 8,
+      "name": {
+        "title": "miss",
+        "first": "pilar",
+        "last": "pascual"
+      },
+      "email": "pilar.pascual@example.com",
+      "dob": "1955-08-03 17:03:41",
+      "phone": "991-068-234",
+      "company": "Stormedia",
+      "title": "Help Desk Technician"
+    },
+    {
+      "id": 9,
+      "name": {
+        "title": "ms",
+        "first": "pearl",
+        "last": "bradley"
+      },
+      "email": "pearl.bradley@example.com",
+      "dob": "1989-08-15 22:47:41",
+      "phone": "09-5481-9640",
+      "company": "bioLane",
+      "title": "Certified Rehabilitation Counselor"
+    },
+    {
+      "id": 10,
+      "name": {
+        "title": "monsieur",
+        "first": "charlie",
+        "last": "bourgeois"
+      },
+      "email": "charlie.bourgeois@example.com",
+      "dob": "1963-08-11 14:46:56",
+      "phone": "(765)-150-1164",
+      "company": "UNIL",
+      "title": "Counter-Intelligence Technician"
+    },
+    {
+      "id": 11,
+      "name": {
+        "title": "mrs",
+        "first": "vivian",
+        "last": "kröger"
+      },
+      "email": "vivian.kröger@example.com",
+      "dob": "1948-12-09 20:28:50",
+      "phone": "0027-0206167",
+      "company": "Mystimia",
+      "title": "Cardiovascular Interventional Technologist"
+    },
+    {
+      "id": 12,
+      "name": {
+        "title": "miss",
+        "first": "kim",
+        "last": "watson"
+      },
+      "email": "kim.watson@example.com",
+      "dob": "1983-12-07 19:57:55",
+      "phone": "06-1983-0504",
+      "company": "Cogiplant",
+      "title": "Environmental Communications Specialist"
+    },
+    {
+      "id": 13,
+      "name": {
+        "title": "mr",
+        "first": "jasper",
+        "last": "hughes"
+      },
+      "email": "jasper.hughes@example.com",
+      "dob": "1993-03-27 06:53:49",
+      "phone": "(400)-320-5915",
+      "company": "Plutronics",
+      "title": "Electronic Maintenance Supervisor"
+    },
+    {
+      "id": 14,
+      "name": {
+        "title": "mr",
+        "first": "malik",
+        "last": "ginnish"
+      },
+      "email": "malik.ginnish@example.com",
+      "dob": "1973-09-16 04:58:21",
+      "phone": "142-626-1010",
+      "company": "Alilegal",
+      "title": "Paralegal Instructor"
+    },
+    {
+      "id": 15,
+      "name": {
+        "title": "mrs",
+        "first": "alex",
+        "last": "griffin"
+      },
+      "email": "alex.griffin@example.com",
+      "dob": "1976-11-25 22:22:05",
+      "phone": "041-055-9618",
+      "company": "Acerend",
+      "title": "Case Work Aide"
+    }
   ]
 }
