@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
 import request from 'superagent'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 
 class Contact extends Component {
-  render () {
-    return this.props.array.map((entry) => {
-      // let keyValue = entry.id
-      return (<Entry deleteFxn={this.props.deleteFxn} entry={entry} key={entry.id} refreshFxn={this.props.refreshFxn} />)
-    })
-  }
-}
-
-class Entry extends Component {
   constructor () {
     super()
     this.state = {
       user: '',
       password: '',
       edit: false,
+      index: '',
       name: '',
       company: '',
       title: '',
@@ -32,6 +25,7 @@ class Entry extends Component {
     this.setState({
       user: window.localStorage.user,
       password: window.localStorage.password,
+      index: this.props.index,
       name: this.state.name ? this.state.name : this.props.entry.first + ' ' + this.props.entry.last,
       company: this.state.company ? this.state.company : this.props.entry.company,
       title: this.state.title ? this.state.title : this.props.entry.title,
@@ -43,38 +37,38 @@ class Entry extends Component {
   openEditor () {
     this.setState({edit: !this.state.edit})
   }
-  componentDidUpdate () {
-    console.log('entry updated!')
-  }
+
   editContact (searchid) {
-    // onClick={(event) => this.editContact(entry.id)}
-    // const entry = this.props.array.filter(contact => contact.id === searchid)[0]
     console.log(searchid)
     const user = this.state.user
+    const index = this.state.index
     const password = this.state.password
     const phonesub = this.state.phone.match(/([0-9])/g).join('')
     const nameArray = this.state.name.split(' ')
     const birthday = moment(this.state.dob)
     const first = nameArray[0]
     const last = nameArray[1]
+
+    const body = {
+      'id': searchid,
+      'first': first,
+      'last': last,
+      'email': this.state.email,
+      'dob': birthday,
+      'phone': phonesub,
+      'company': this.state.company,
+      'title': this.state.title
+    }
     return (
       request
         .put(`http://localhost:8000/contacts/${searchid}`)
         .auth(user, password)
-        .send(
-          {
-            'id': searchid,
-            'first': first,
-            'last': last,
-            'email': this.state.email,
-            'dob': birthday,
-            'phone': phonesub,
-            'company': this.state.company,
-            'title': this.state.title
-          })
+        .send(body)
         .then((callback) => {
           console.log(callback)
-          this.props.refreshFxn()
+          const allcontacts = this.props.array
+          allcontacts.splice(index, 1, body)
+          this.props.setContactsFxn(allcontacts)
           this.openEditor()
         })
     )
@@ -90,9 +84,9 @@ class Entry extends Component {
     const name = entry.first + ' ' + entry.last
     const fullname = convertCase(name)
     const phoneNumber = formatPhone(entry.phone)
-    const birthdate = moment(entry.dob).format('MMM Do, YYYY')
-    const statePhone = formatPhone(this.state.phone)
-    const stateDob = moment(this.state.dob).format('MMM Do, YYYY')
+    const birthdate = moment(entry.dob).format('MM/DD/YY')
+    // const statePhone = formatPhone(this.state.phone)
+    // const stateDob = moment(this.state.dob).format('MM/DD/YY')
 
     if (!this.state.edit) {
       return (
@@ -127,10 +121,10 @@ class Entry extends Component {
             <input type='text' name='email' value={this.state.email || entry.email} onChange={(e) => this.handleChange(e)} />
           </td>
           <td className='contact-phone'>
-            <input type='text' name='phone' value={statePhone || phoneNumber} onChange={(e) => this.handleChange(e)} />
+            <input type='text' name='phone' value={this.state.phone || phoneNumber} onChange={(e) => this.handleChange(e)} />
           </td>
           <td className='contact-DOB'>
-            <input type='text' name='dob' value={stateDob || birthdate} onChange={(e) => this.handleChange(e)} />
+            <input type='text' name='dob' value={this.state.dob || birthdate} onChange={(e) => this.handleChange(e)} />
           </td>
           <td>
             <div className='input-group contact-buttons'>
@@ -165,3 +159,8 @@ function formatPhone (string) {
 }
 
 export default Contact
+
+Contact.propTypes = {
+  deleteFxn: PropTypes.func.isRequired,
+  entry: PropTypes.object.isRequired
+}

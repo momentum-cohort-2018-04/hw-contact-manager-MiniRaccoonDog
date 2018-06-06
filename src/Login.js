@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import request from 'superagent'
-//  {id: 2, username: 'atorres', password: 'carpet-PANTHER-balloon-FROG'}
+import PropTypes from 'prop-types'
+
 class Login extends Component {
   constructor () {
     super()
@@ -112,3 +113,9 @@ class Login extends Component {
 }
 
 export default Login
+
+Login.propTypes = {
+  sttoreFxn: PropTypes.func.isRequired,
+  removeFxn: PropTypes.func.isRequired,
+  setAuthFxn: PropTypes.func.isRequired
+}

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Login from './Login'
-import Contacts from './Contacts'
-// import 'shoelace-css/dist/shoelace.css'
+import Landing from './Landing'
 
 class App extends Component {
   constructor () {
@@ -43,7 +42,7 @@ class App extends Component {
     } else if (this.state.user && this.state.password) {
       return (
         <div className='main'>
-          <Contacts user={this.state.user} password={this.state.password} />
+          <Landing />
         </div>
       )
     } else {
