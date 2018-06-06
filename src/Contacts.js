@@ -83,7 +83,7 @@ class Contacts extends Component {
           title: this.state.title
         })
         .then((callback) => {
-          console.log(callback)
+          console.log('add contact callback', callback)
         })
     )
   }
@@ -176,7 +176,7 @@ class Contacts extends Component {
         </form>
         <table className='table-striped table-hoverable'>
           <thead>
-            <tr><th>Contact</th><th>Company</th><th>Title</th><th>Email</th><th>Phone Number</th><th>DOB</th><th>Buttons</th></tr>
+            <tr><th>Contact</th><th>Company</th><th>Title</th><th>Email</th><th>Phone Number</th><th>DOB</th></tr>
           </thead>
           <tbody>
             <Contact array={this.state.contacts} deleteFxn={this.deleteContact} refreshFxn={this.getALLContacts} />

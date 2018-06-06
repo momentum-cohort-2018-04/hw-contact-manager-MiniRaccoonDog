@@ -1,4 +1,4 @@
-.center {
+.full-center {
   position: fixed;
   top: 20vh;
   left: 33vw;
@@ -23,8 +23,13 @@
   margin: auto auto;
 }
 .contact-form{
+  position: fixed;
+  top: 10vh;
+  left: 20vw;
   margin: 2rem auto;
-  width: 60%;
+  width: 60vw;
+  background-color: whitesmoke;
+  border: rgb(66, 66, 66) 5px solid
 }
 
 .search {

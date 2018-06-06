@@ -59,7 +59,7 @@ class Login extends Component {
   render () {
     if (this.state.error === '') {
       return (
-        <div className='login center'>
+        <div className='login full-center'>
           <form className='login_form' onSubmit={(e) => this.checkAuth(e)}>
             <fieldset>
               <legend>Login</legend>
