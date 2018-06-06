@@ -43,15 +43,7 @@ class App extends Component {
     } else if (this.state.user && this.state.password) {
       return (
         <div className='main'>
-          <table className='table-striped table-hoverable'>
-            <thead>
-              <tr><th>Contact</th><th>Company</th><th>Title</th><th>Email</th><th>Phone</th><th>DOB</th></tr>
-            </thead>
-            <tbody>
-              <Contacts user={this.state.user} password={this.state.password} />
-            </tbody>
-          </table>
-
+          <Contacts user={this.state.user} password={this.state.password} />
         </div>
       )
     } else {

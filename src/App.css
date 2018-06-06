@@ -4,3 +4,29 @@
   left: 33vw;
   width: 33vw;
 }
+
+.main {
+  margin: 1rem auto;
+  width: 75%;
+  font-size: 13px;
+}
+
+.small-margin {
+  margin: .25rem 0;
+}
+
+.med-margin {
+  margin: 1rem 0;
+}
+
+.contact-buttons{
+  margin: auto auto;
+}
+.contact-form{
+  margin: 2rem auto;
+  width: 60%;
+}
+
+.search {
+  margin: 0 auto;
+}

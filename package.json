@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "^2.22.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
-    "shoelace-css": "^1.0.0-beta24"
+    "shoelace-css": "^1.0.0-beta24",
+    "uuid-v4": "^0.1.0"
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"npm run start-api\"",
