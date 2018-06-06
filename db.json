@@ -1,5 +1,6 @@
 {
-  "contacts": [{
+  "contacts": [
+    {
       "id": "f18ed10e-d417-4316-8939-b07079fca0d8",
       "first": "annette",
       "last": "dunn",
@@ -167,7 +168,7 @@
       "dob": "1990-06-19T04:00:00.000Z",
       "phone": "9198867885",
       "company": "Spoonflower",
-      "title": "COMRADE"
+      "title": "COMRADE IN ARMS AND LEGS"
     }
   ]
 }

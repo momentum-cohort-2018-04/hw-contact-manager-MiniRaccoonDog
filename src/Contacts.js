@@ -88,7 +88,6 @@ class Contacts extends Component {
     )
   }
 
-
   deleteContact (id) {
     const user = this.props.user
     const password = this.props.password
@@ -180,7 +179,7 @@ class Contacts extends Component {
             <tr><th>Contact</th><th>Company</th><th>Title</th><th>Email</th><th>Phone Number</th><th>DOB</th><th>Buttons</th></tr>
           </thead>
           <tbody>
-            <Contact array={this.state.contacts} deleteFxn={this.deleteContact} />
+            <Contact array={this.state.contacts} deleteFxn={this.deleteContact} refreshFxn={this.getALLContacts} />
           </tbody>
         </table>
       </React.Fragment>
