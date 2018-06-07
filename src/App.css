@@ -5,22 +5,23 @@
   width: 33vw;
 }
 
+.title{
+  margin: 2rem auto;
+  text-align: center;
+  font-weight: 700;
+}
+
 .main {
   margin: 1rem auto;
   width: 85%;
-  /* font-size: 12px; */
+  font-family: 'Lato', sans-serif;
 }
 
 .small-margin {
   margin: .25rem 0;
 }
-
 .med-margin {
   margin: 1rem 0;
-}
-
-.contact-buttons{
-  margin: auto auto;
 }
 .contact-form{
   position: fixed;
@@ -29,9 +30,40 @@
   margin: 2rem auto;
   width: 60vw;
   background-color: whitesmoke;
-  border: rgb(66, 66, 66) 5px solid
+  border: rgb(66, 66, 66) 1px solid
 }
 
 .search {
   margin: 0 auto;
+}
+
+.contact{
+  width: 100%;
+  margin: 1rem 0rem;
+  padding: .25rem 2rem .25rem 1rem;
+}
+.contact-name{
+  margin: .2rem 0;
+  border-bottom: grey 1px solid;
+  font-size: 1.4rem;
+  font-weight:700;
+}
+.contact-company{
+  margin-top: .5rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.contact-email{
+  margin-top: 1rem;
+}
+.contact-DOB{
+  margin: .5rem 0;
+}
+
+/* .contact-title{} */
+/* .contact-phone{} */
+/* .contact-button{} */
+
+.contact-group {
+  margin-top: 1rem;
 }

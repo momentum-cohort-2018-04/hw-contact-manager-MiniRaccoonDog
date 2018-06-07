@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import './App.css'
 import Login from './Login'
-import Contacts from './Contacts'
-// import 'shoelace-css/dist/shoelace.css'
+import Landing from './Landing'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
 
 class App extends Component {
   constructor () {
@@ -33,21 +36,22 @@ class App extends Component {
   }
 
   render () {
-    if (!this.state.user && !this.state.password) {
+    if (!window.localStorage.user || !window.localStorage.user) {
       return (
-        <div className='main'>
-          <Login storeFxn={this.storeLocal} removeFxn={this.removeLocal} setAuthFxn={this.setAuth} />
-        </div>
-
-      )
-    } else if (this.state.user && this.state.password) {
-      return (
-        <div className='main'>
-          <Contacts user={this.state.user} password={this.state.password} />
-        </div>
+        <Login storeFxn={this.storeLocal} removeFxn={this.removeLocal} setAuthFxn={this.setAuth} />
       )
     } else {
-      return null
+      return (
+        <Router>
+          <div>
+            <Route path='/' render={({history}) =>
+              <div className='main'>
+                <h1 className='title'>Contacts</h1>
+                <Landing history={history} />
+              </div>
+            } />
+          </div>
+        </Router>)
     }
   }
 }
