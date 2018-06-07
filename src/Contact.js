@@ -39,7 +39,6 @@ class Contact extends Component {
   }
 
   editContact (searchid) {
-    console.log(searchid)
     const user = this.state.user
     const index = this.state.index
     const password = this.state.password
@@ -79,58 +78,54 @@ class Contact extends Component {
   }
 
   render () {
-    // const deleteContact = this.props.deleteFxn
     const entry = this.props.entry
     const name = entry.first + ' ' + entry.last
     const fullname = convertCase(name)
     const phoneNumber = formatPhone(entry.phone)
-    const birthdate = moment(entry.dob).format('MM/DD/YY')
+    const birthdate = moment(entry.dob).format('MMM DD, YYYY')
     if (!this.state.edit) {
       return (
-        <tr className='contact' key={entry.id}>
-          <td className='contact-name' id={entry.id}>{fullname}</td>
-          <td className='contact-company'><b>{entry.company}</b></td>
-          <td className='contact-title'><i>{entry.title}</i></td>
-          <td className='contact-email'> {entry.email}</td>
-          <td className='contact-phone'>{phoneNumber}</td>
-          <td className='contact-DOB'>{birthdate}</td>
-          <td>
-            <div className='input-group contact-buttons'>
-              <button type='button' className='button-info' onClick={this.openEditor}>Edit</button>
-              <button type='button' className='button-danger' onClick={() => this.props.deleteFxn(entry.id)}>Delete</button>
-            </div>
-          </td>
-        </tr>
+        <div className='col-3 contact' key={entry.id}>
+          <div className='contact-name' id={entry.id}>{fullname}</div>
+          <div className='contact-company'>{entry.company}</div>
+          <div className='contact-title'>{entry.title}</div>
+          <div className='contact-email'> {entry.email}</div>
+          <div className='contact-phone'>{phoneNumber}</div>
+          <div className='contact-DOB'>Birthday: {birthdate}</div>
+          <div className='input-group contact-group'>
+            <button type='button' className='button-light button-xs contact-button' onClick={this.openEditor}>Edit</button>
+            <button type='button' className='button-secondary button-xs contact-button' onClick={() => this.props.deleteFxn(entry.id)}>Delete</button>
+          </div>
+        </div>
       )
     } else if (this.state.edit) {
       return (
-        <tr className='contact' key={entry.id}>
-          <td className='contact-name' id={entry.id}>
+        <div className='col-3 contact' key={entry.id}>
+          <div className='contact-name' id={entry.id}>
             <input type='text' name='name' value={this.state.name || fullname} onChange={(e) => this.handleChange(e)} />
-          </td>
-          <td className='contact-company'>
+          </div>
+          <div className='contact-company'>
             <input type='text' name='company' value={this.state.company || entry.company} onChange={(e) => this.handleChange(e)} />
-          </td>
-          <td className='contact-title'>
+          </div>
+          <div className='contact-title'>
             <input type='text' name='title' value={this.state.title || entry.title} onChange={(e) => this.handleChange(e)} />
-          </td>
-          <td className='contact-email'>
+          </div>
+          <div className='contact-email'>
             <input type='text' name='email' value={this.state.email || entry.email} onChange={(e) => this.handleChange(e)} />
-          </td>
-          <td className='contact-phone'>
+          </div>
+          <div className='contact-phone'>
             <input type='text' name='phone' value={this.state.phone || phoneNumber} onChange={(e) => this.handleChange(e)} />
-          </td>
-          <td className='contact-DOB'>
+          </div>
+          <div className='contact-DOB'>
+            <h4>Birthday:</h4>
             <input type='text' name='dob' value={this.state.dob || birthdate} onChange={(e) => this.handleChange(e)} />
-          </td>
-          <td>
-            <div className='input-group contact-buttons'>
-              <button type='button' className='button-success' onClick={() => this.editContact(entry.id)}>Submit</button>
-              <button type='button' className='button-warning' onClick={this.openEditor}>Cancel</button>
-              <button type='button' className='button-danger' onClick={() => this.deleteContact(entry.id)}>Delete</button>
-            </div>
-          </td>
-        </tr>
+          </div>
+          <div className='input-group contact-buttons'>
+            <button type='button' className='button-light' onClick={() => this.editContact(entry.id)}>Submit</button>
+            <button type='button' className='button-secondary' onClick={this.openEditor}>Cancel</button>
+            <button type='button' className='button-secondary' onClick={() => this.props.deleteFxn(entry.id)}>Delete</button>
+          </div>
+        </div>
       )
     }
   }

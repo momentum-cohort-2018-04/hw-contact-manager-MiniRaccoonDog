@@ -4,7 +4,6 @@ import uuid from 'uuid-v4'
 import moment from 'moment'
 import Contacts from './Contacts'
 import {
-  BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
@@ -229,32 +228,36 @@ class Landing extends Component {
                 <input type='text' name='dob' placeholder='Date of Birth' onChange={(e) => this.handleChange(e)} />
               </div>
               <div className='input-group med-margin'>
-                <button type='submit' className='button' >Submit</button>
-                <button type='button' className='button-danger' onClick={this.props.history.goBack}>Cancel</button>
+                <button type='submit' className='button-light' >Submit</button>
+                <button type='button' className='button-secondary' onClick={this.props.history.goBack}>Cancel</button>
               </div>
             </form>
           </fieldset>
         } />
         <Route exact path='/' render={() =>
           <React.Fragment>
-
-            <Link to='/add'><button type='button' className='button'>Add Contact</button></Link>
-            <form className='search w-50' onSubmit={(e) => this.searchContacts(e)}>
-              <div className='input-group'>
-                <input type='text' name='search' placeholder='Search Contacts' onChange={(e) => this.handleChange(e)} />
-                <button type='submit' className='button'>Submit</button>
-
+            <div className='container'>
+              <div className='row'>
+                <div className='col-1' />
+                <div className='col-2'>
+                  <Link to='/add'><button type='button' className='button-light button-block'>Add Contact</button></Link>
+                </div>
+                <div className='col-6'>
+                  <form className='search' onSubmit={(e) => this.searchContacts(e)}>
+                    <div className='input-group'>
+                      <input type='text' name='search' placeholder='Search Contacts' onChange={(e) => this.handleChange(e)} />
+                      <button type='submit' className='button-light'>Submit</button>
+                    </div>
+                  </form></div>
+                <div className='col-2' ><button type='button' className='button-light button-block' onClick={this.getALLContacts}>Refresh</button></div>
+                <div className='col-1' />
               </div>
-              <button type='button' className='button' onClick={this.getALLContacts}>Refresh</button>
-            </form>
-            <table className='table-striped table-hoverable'>
-              <thead>
-                <tr><th>Contact</th><th>Company</th><th>Title</th><th>Email</th><th>Phone Number</th><th>DOB</th></tr>
-              </thead>
-              <tbody>
+            </div>
+            <div className='container'>
+              <div className='row'>
                 <Contacts array={this.state.contacts} deleteFxn={this.deleteContact} setContactsFxn={this.setContacts} />
-              </tbody>
-            </table>
+              </div>
+            </div>
           </React.Fragment>
         } />
       </div>)

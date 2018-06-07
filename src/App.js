@@ -36,21 +36,23 @@ class App extends Component {
   }
 
   render () {
-    return (
-      <Router>
-        <div>
-          <Route path='/' render={({history}) =>
-            <div className='main'>
-              <Landing history={history} />
-            </div>
-          } />
-          <Route path='/validation' render={() =>
-            <div className='main'>
-              <Login storeFxn={this.storeLocal} removeFxn={this.removeLocal} setAuthFxn={this.setAuth} />
-            </div>
-          } />
-        </div>
-      </Router>)
+    if (!window.localStorage.user || !window.localStorage.user) {
+      return (
+        <Login storeFxn={this.storeLocal} removeFxn={this.removeLocal} setAuthFxn={this.setAuth} />
+      )
+    } else {
+      return (
+        <Router>
+          <div>
+            <Route path='/' render={({history}) =>
+              <div className='main'>
+                <h1 className='title'>Contacts</h1>
+                <Landing history={history} />
+              </div>
+            } />
+          </div>
+        </Router>)
+    }
   }
 }
 

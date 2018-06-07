@@ -178,57 +178,7 @@
       "dob": "1990-05-05T04:00:00.000Z",
       "phone": "9198867885",
       "company": "Spoonflower",
-      "title": "wdd"
-    },
-    {
-      "id": "c688f7a3-1b59-47f0-b634-20345dcff637",
-      "first": "Alyssa",
-      "last": "Torres",
-      "email": "shortcircuit@spoonflower.com",
-      "dob": "1990-05-05T04:00:00.000Z",
-      "phone": "9198867885",
-      "company": "Spoonflower",
-      "title": "we"
-    },
-    {
-      "id": "8e77a75b-546d-4e18-aaa8-4a427aa4c84f",
-      "first": "Alyssa",
-      "last": "Torres",
-      "email": "shortcircuit@spoonflower.com",
-      "dob": "1990-05-05T04:00:00.000Z",
-      "phone": "9198867885",
-      "company": "Spoonflower",
-      "title": "aaaaaaaaah"
-    },
-    {
-      "id": "75fdbca7-e490-48a2-be7a-383c6b8091c1",
-      "first": "Alyssa",
-      "last": "Torres",
-      "email": "shortcircuit@spoonflower.com",
-      "dob": "1990-05-05T04:00:00.000Z",
-      "phone": "9198867885",
-      "company": "Spoonflower",
-      "title": "a"
-    },
-    {
-      "id": "c84b779c-0843-47e6-99bb-c9dd7694aea0",
-      "first": "Alyssa",
-      "last": "Torres",
-      "email": "shortcircuit@spoonflower.com",
-      "dob": "1990-05-05T04:00:00.000Z",
-      "phone": "9198867885",
-      "company": "Spoonflower",
-      "title": "a"
-    },
-    {
-      "id": "e34f5e93-1201-40b4-a921-db7622ceadce",
-      "first": "Alyssa",
-      "last": "Torres",
-      "email": "shortcircuit@spoonflower.com",
-      "dob": "1990-05-05T04:00:00.000Z",
-      "phone": "9198867885",
-      "company": "Spoonflower",
-      "title": "asd"
+      "title": "Head of things"
     },
     {
       "id": "04b3173c-df4c-43f1-b0fb-250724040452",
@@ -239,16 +189,6 @@
       "phone": "9195551212",
       "company": "Momentum",
       "title": "DA BOSS"
-    },
-    {
-      "id": "8fa93a01-4429-467d-861b-82acad6160d7",
-      "first": "Alyssaasdasdasd",
-      "last": "Torres",
-      "email": "shortcircuit@spoonflower.com",
-      "dob": "1992-05-08T04:00:00.000Z",
-      "phone": "9198867885",
-      "company": "Spoonflower",
-      "title": "asd"
     }
   ]
 }

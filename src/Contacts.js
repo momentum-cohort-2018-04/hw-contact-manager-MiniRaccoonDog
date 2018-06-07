@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-// import request from 'superagent'
-// import moment from 'moment'
 import Contact from './Contact'
 import PropTypes from 'prop-types'
 
@@ -17,5 +15,8 @@ export default Contacts
 
 Contacts.propTypes = {
   deleteFxn: PropTypes.func.isRequired,
-  array: PropTypes.array.isRequired
+  setContactsFxn: PropTypes.func.isRequired,
+  array: PropTypes.array.isRequired,
+  entry: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired
 }
