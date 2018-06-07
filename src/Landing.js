@@ -52,7 +52,16 @@ class Landing extends Component {
         })
     )
   }
+  renderBirthday (name) {
+    return (
+      <div className='row'>
+        <div className='col-2' />
+        <div className='col-8'>`Today is ${name}'s Birthday!`</div>
+        <div className='col-2' />
+      </div>
 
+    )
+  }
   /*
   getOneContact (id) {
     const user = this.props.user
@@ -253,6 +262,7 @@ class Landing extends Component {
                 <div className='col-1' />
               </div>
             </div>
+
             <div className='container'>
               <div className='row'>
                 <Contacts array={this.state.contacts} deleteFxn={this.deleteContact} setContactsFxn={this.setContacts} />

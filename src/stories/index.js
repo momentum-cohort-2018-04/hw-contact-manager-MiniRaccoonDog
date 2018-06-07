@@ -8,7 +8,7 @@ import 'shoelace-css/dist/shoelace.css'
 import { Button, Welcome } from '@storybook/react/demo'
 
 // import Contact from '../Contact'
-import Landing from '../Landing'
+import App from '../App'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
 
@@ -22,5 +22,5 @@ storiesOf('Button', module)
     </Button>
   ))
 
-storiesOf('Landing', module)
-  .add('empty Landing', () => <Landing />)
+storiesOf('App', module)
+  .add('main App, not logged in', () => <App />)
