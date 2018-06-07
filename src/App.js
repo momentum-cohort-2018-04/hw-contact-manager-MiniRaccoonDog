@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path='/' render={({history}) =>
+          <Route path='/' render={({history}) =>
             <div className='main'>
               <Landing history={history} />
             </div>

@@ -79,14 +79,12 @@ class Contact extends Component {
   }
 
   render () {
-    const deleteContact = this.props.deleteFxn
+    // const deleteContact = this.props.deleteFxn
     const entry = this.props.entry
     const name = entry.first + ' ' + entry.last
     const fullname = convertCase(name)
     const phoneNumber = formatPhone(entry.phone)
     const birthdate = moment(entry.dob).format('MM/DD/YY')
-    // const statePhone = formatPhone(this.state.phone)
-    // const stateDob = moment(this.state.dob).format('MM/DD/YY')
     if (!this.state.edit) {
       return (
         <tr className='contact' key={entry.id}>
@@ -99,7 +97,7 @@ class Contact extends Component {
           <td>
             <div className='input-group contact-buttons'>
               <button type='button' className='button-info' onClick={this.openEditor}>Edit</button>
-              <button type='button' className='button-danger' onClick={() => deleteContact(entry.id)}>Delete</button>
+              <button type='button' className='button-danger' onClick={() => this.props.deleteFxn(entry.id)}>Delete</button>
             </div>
           </td>
         </tr>
@@ -129,7 +127,7 @@ class Contact extends Component {
             <div className='input-group contact-buttons'>
               <button type='button' className='button-success' onClick={() => this.editContact(entry.id)}>Submit</button>
               <button type='button' className='button-warning' onClick={this.openEditor}>Cancel</button>
-              <button type='button' className='button-danger' onClick={() => deleteContact(entry.id)}>Delete</button>
+              <button type='button' className='button-danger' onClick={() => this.deleteContact(entry.id)}>Delete</button>
             </div>
           </td>
         </tr>

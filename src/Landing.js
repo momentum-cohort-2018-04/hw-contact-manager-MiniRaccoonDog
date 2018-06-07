@@ -30,6 +30,7 @@ class Landing extends Component {
     this.addContact = this.addContact.bind(this)
     this.getALLContacts = this.getALLContacts.bind(this)
     this.setContacts = this.setContacts.bind(this)
+    this.deleteContact = this.deleteContact.bind(this)
   }
 
   componentDidMount () {
@@ -71,7 +72,8 @@ class Landing extends Component {
     this.setState({contacts: newarray})
   }
 
-  addContact () {
+  addContact (event) {
+    event.preventDefault()
     const phonesub = this.state.phone.match(/([0-9])/g).join('')
     return (
       request
@@ -86,24 +88,26 @@ class Landing extends Component {
           company: this.state.company,
           title: this.state.title
         })
-        .then((callback) => {
-          console.log('add contact callback', callback)
+        .then((response) => {
+          this.props.history.push('/')
+          this.setState(previous => ({
+            contacts: previous.contacts.concat(response.body)
+          }))
         })
     )
   }
 
   deleteContact (id) {
-    return (
-      request
-        .delete(`http://localhost:8000/contacts/${id}`)
-        .auth(this.state.user, this.state.password)
-        .then((response) => {
-          console.log('Deleted', response)
-          const oldArray = this.state.contacts
-          const result = oldArray.filter(old => old.id !== id)
-          this.setState({contacts: result})
-        })
-    )
+    request
+      .delete(`http://localhost:8000/contacts/${id}`)
+      .auth(this.state.user, this.state.password)
+      .then((response) => {
+        console.log('Deleted', response)
+        const oldArray = this.state.contacts
+        const result = oldArray.filter(old => old.id !== id)
+        this.setState({contacts: result})
+        this.setState({backup: result})
+      })
   }
   searchContacts (event) {
     event.preventDefault()
@@ -190,72 +194,70 @@ class Landing extends Component {
 
   render () {
     return (
-      <Router>
-        <div>
-          <Route path='/add' render={() =>
-            <fieldset className='contact-form'>
-              <legend >New Contact</legend>
-              <form className='newContact' onSubmit={this.addContact}>
-                <div className='input-group input-icon'>
-                  <i className='fa fa-fw fa-user' />
-                  <input type='text' name='first' placeholder='First Name' onChange={(e) => this.handleChange(e)} />
-                  <input type='text' name='last'placeholder='Last Name' onChange={(e) => this.handleChange(e)} />
-                </div>
-                <div className='med-margin'>
-                  <div className='input-icon'>
-                    <i className='fa fa-fw fa-building' />
-                    <input type='text' name='company' placeholder='Company' onChange={(e) => this.handleChange(e)} />
-                  </div>
-                  <div className='input-icon small-margin'>
-                    <input type='text' name='title' placeholder='Title' onChange={(e) => this.handleChange(e)} />
-                    <i className='fa fa-fw fa-id-card' />
-                  </div>
-                </div>
-                <div className='med-margin'>
-                  <div className='input-icon'>
-                    <input type='text' name='email' placeholder='Email Address' onChange={(e) => this.handleChange(e)} />
-                    <i className='fa fa-fw fa-envelope-o' />
-                  </div>
-                  <div className='input-icon small-margin'>
-                    <i className='fa fa-fw fa-phone' />
-                    <input type='text' name='phone' placeholder='Phone Number' onChange={(e) => this.handleChange(e)} />
-                  </div>
-                </div>
+      <div>
+        <Route path='/add' render={() =>
+          <fieldset className='contact-form'>
+            <legend >New Contact</legend>
+            <form className='newContact' onSubmit={this.addContact}>
+              <div className='input-group input-icon'>
+                <i className='fa fa-fw fa-user' />
+                <input type='text' name='first' placeholder='First Name' onChange={(e) => this.handleChange(e)} />
+                <input type='text' name='last'placeholder='Last Name' onChange={(e) => this.handleChange(e)} />
+              </div>
+              <div className='med-margin'>
                 <div className='input-icon'>
-                  <i className='fa fa-fw fa-birthday-cake' />
-                  <input type='text' name='dob' placeholder='Date of Birth' onChange={(e) => this.handleChange(e)} />
+                  <i className='fa fa-fw fa-building' />
+                  <input type='text' name='company' placeholder='Company' onChange={(e) => this.handleChange(e)} />
                 </div>
-                <div className='input-group med-margin'>
-                  <button type='submit' className='button' >Submit</button>
-                  <button type='button' className='button-danger' onClick={this.props.history.goBack}>Cancel</button>
+                <div className='input-icon small-margin'>
+                  <input type='text' name='title' placeholder='Title' onChange={(e) => this.handleChange(e)} />
+                  <i className='fa fa-fw fa-id-card' />
                 </div>
-              </form>
-            </fieldset>
-          } />
-          <Route exact path='/' render={() =>
-            <React.Fragment>
+              </div>
+              <div className='med-margin'>
+                <div className='input-icon'>
+                  <input type='text' name='email' placeholder='Email Address' onChange={(e) => this.handleChange(e)} />
+                  <i className='fa fa-fw fa-envelope-o' />
+                </div>
+                <div className='input-icon small-margin'>
+                  <i className='fa fa-fw fa-phone' />
+                  <input type='text' name='phone' placeholder='Phone Number' onChange={(e) => this.handleChange(e)} />
+                </div>
+              </div>
+              <div className='input-icon'>
+                <i className='fa fa-fw fa-birthday-cake' />
+                <input type='text' name='dob' placeholder='Date of Birth' onChange={(e) => this.handleChange(e)} />
+              </div>
+              <div className='input-group med-margin'>
+                <button type='submit' className='button' >Submit</button>
+                <button type='button' className='button-danger' onClick={this.props.history.goBack}>Cancel</button>
+              </div>
+            </form>
+          </fieldset>
+        } />
+        <Route exact path='/' render={() =>
+          <React.Fragment>
 
-              <Link to='/add'><button type='button' className='button'>Add Contact</button></Link>
-              <form className='search w-50' onSubmit={(e) => this.searchContacts(e)}>
-                <div className='input-group'>
-                  <input type='text' name='search' placeholder='Search Contacts' onChange={(e) => this.handleChange(e)} />
-                  <button type='submit' className='button'>Submit</button>
+            <Link to='/add'><button type='button' className='button'>Add Contact</button></Link>
+            <form className='search w-50' onSubmit={(e) => this.searchContacts(e)}>
+              <div className='input-group'>
+                <input type='text' name='search' placeholder='Search Contacts' onChange={(e) => this.handleChange(e)} />
+                <button type='submit' className='button'>Submit</button>
 
-                </div>
-                <button type='button' className='button' onClick={this.getALLContacts}>Refresh</button>
-              </form>
-              <table className='table-striped table-hoverable'>
-                <thead>
-                  <tr><th>Contact</th><th>Company</th><th>Title</th><th>Email</th><th>Phone Number</th><th>DOB</th></tr>
-                </thead>
-                <tbody>
-                  <Contacts array={this.state.contacts} deleteFxn={this.deleteContact} setContactsFxn={this.setContacts} />
-                </tbody>
-              </table>
-            </React.Fragment>
-          } />
-        </div>
-      </Router>)
+              </div>
+              <button type='button' className='button' onClick={this.getALLContacts}>Refresh</button>
+            </form>
+            <table className='table-striped table-hoverable'>
+              <thead>
+                <tr><th>Contact</th><th>Company</th><th>Title</th><th>Email</th><th>Phone Number</th><th>DOB</th></tr>
+              </thead>
+              <tbody>
+                <Contacts array={this.state.contacts} deleteFxn={this.deleteContact} setContactsFxn={this.setContacts} />
+              </tbody>
+            </table>
+          </React.Fragment>
+        } />
+      </div>)
   }
 }
 
