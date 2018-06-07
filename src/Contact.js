@@ -89,9 +89,9 @@ class Contact extends Component {
     const name = entry.first + ' ' + entry.last
     const fullname = convertCase(name)
     const phoneNumber = formatPhone(entry.phone)
-    const birthdate = moment(entry.dob).format('MMM DD')
+    const birthdate = moment(entry.dob).format('MMMM DD')
     const now = new Date()
-    const current = moment(now).format('MMM DD')
+    const current = moment(now).format('MMMM DD')
     if (!this.state.edit) {
       return (
         <div className='col-3 contact' key={entry.id}>
