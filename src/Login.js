@@ -84,7 +84,7 @@ class Login extends Component {
       )
     } else if (this.state.error === 401) {
       return (
-        <div className='login center'>
+        <div className='login full-center'>
           <form className='login_form' onSubmit={(e) => this.checkAuth(e)}>
             <fieldset>
               <legend>Login</legend>

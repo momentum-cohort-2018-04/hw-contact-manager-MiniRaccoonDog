@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   render () {
-    if (!window.localStorage.user || !window.localStorage.user) {
+    if (!window.localStorage.user || !window.localStorage.password) {
       return (
         <Login storeFxn={this.storeLocal} removeFxn={this.removeLocal} setAuthFxn={this.setAuth} />
       )

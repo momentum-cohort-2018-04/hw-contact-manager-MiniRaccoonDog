@@ -11,6 +11,15 @@
   font-weight: 700;
 }
 
+.birthdaybanner {
+  text-align: center;
+  color: white;
+  background-color: grey;
+  padding: .2rem;
+  font-size: 500;
+  border-radius: 1rem;
+}
+
 .main {
   margin: 1rem auto;
   width: 85%;

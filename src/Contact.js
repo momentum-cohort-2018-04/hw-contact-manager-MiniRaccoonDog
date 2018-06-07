@@ -7,7 +7,6 @@ class Contact extends Component {
   constructor () {
     super()
     this.state = {
-      isbirthday: false,
       user: '',
       password: '',
       edit: false,
@@ -20,8 +19,6 @@ class Contact extends Component {
       dob: ''
     }
     this.openEditor = this.openEditor.bind(this)
-    this.renderBirthday = this.renderBirthday.bind(this)
-    // this.setBday = this.setBday.bind(this)
   }
 
   componentDidMount () {
@@ -80,18 +77,12 @@ class Contact extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  renderBirthday (name) {
-    return (<div className='banner'>Today is {name}'s Birthday!</div>)
-  }
-
   render () {
     const entry = this.props.entry
     const name = entry.first + ' ' + entry.last
     const fullname = convertCase(name)
     const phoneNumber = formatPhone(entry.phone)
     const birthdate = moment(entry.dob).format('MMMM DD')
-    const now = new Date()
-    const current = moment(now).format('MMMM DD')
     if (!this.state.edit) {
       return (
         <div className='col-3 contact' key={entry.id}>
@@ -101,7 +92,6 @@ class Contact extends Component {
           <div className='contact-email'> {entry.email}</div>
           <div className='contact-phone'>{phoneNumber}</div>
           <div className='contact-DOB'>Birthday: {birthdate}</div>
-          { (birthdate === current) && this.renderBirthday(fullname)}
           <div className='input-group contact-group'>
             <button type='button' className='button-light button-xs contact-button' onClick={this.openEditor}>Edit</button>
             <button type='button' className='button-secondary button-xs contact-button' onClick={() => this.props.deleteFxn(entry.id)}>Delete</button>

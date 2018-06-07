@@ -14,6 +14,7 @@ class Landing extends Component {
     this.state = {
       user: window.localStorage.user,
       password: window.localStorage.password,
+      birthdays: [],
       contacts: [],
       backup: [],
       search: '',
@@ -30,6 +31,7 @@ class Landing extends Component {
     this.getALLContacts = this.getALLContacts.bind(this)
     this.setContacts = this.setContacts.bind(this)
     this.deleteContact = this.deleteContact.bind(this)
+    this.refreshContacts = this.refreshContacts.bind(this)
   }
 
   componentDidMount () {
@@ -49,18 +51,36 @@ class Landing extends Component {
           console.log(response.body)
           this.setState({contacts: response.body})
           this.setState({backup: response.body})
+        }).then((response) => {
+          this.findBirthday()
         })
     )
   }
-  renderBirthday (name) {
-    return (
-      <div className='row'>
-        <div className='col-2' />
-        <div className='col-8'>`Today is ${name}'s Birthday!`</div>
-        <div className='col-2' />
-      </div>
 
-    )
+  findBirthday () {
+    const birthdayArray = this.state.contacts.filter((entry) => {
+      const now = new Date()
+      const today = moment(now).format('MMMM DD')
+      const birthDate = moment(entry.dob).format('MMMM DD')
+      if (today === birthDate) {
+        return true
+      }
+    })
+    console.log(birthdayArray)
+    this.setState({birthdays: birthdayArray})
+  }
+  renderBirthday () {
+    const celebrate = this.state.birthdays.map((value) => {
+      const name = value.first + ' ' + value.last
+      const fullname = convertCase(name)
+      return `${fullname}'s Birthday is today!`
+    })
+    return celebrate
+  }
+
+  refreshContacts () {
+    const saved = this.state.backup
+    this.setState({contacts: saved})
   }
   /*
   getOneContact (id) {
@@ -258,11 +278,15 @@ class Landing extends Component {
                       <button type='submit' className='button-light'>Submit</button>
                     </div>
                   </form></div>
-                <div className='col-2' ><button type='button' className='button-light button-block' onClick={this.getALLContacts}>Refresh</button></div>
+                <div className='col-2' ><button type='button' className='button-light button-block' onClick={this.refreshContacts}>Refresh</button></div>
                 <div className='col-1' />
               </div>
             </div>
-
+            {this.state.birthdays.length > 0 && <div className='row'>
+              <div className='col-2' />
+              <div className='col-8 birthdaybanner'>{this.renderBirthday()}</div>
+              <div className='col-2' />
+            </div>}
             <div className='container'>
               <div className='row'>
                 <Contacts array={this.state.contacts} deleteFxn={this.deleteContact} setContactsFxn={this.setContacts} />
@@ -272,6 +296,18 @@ class Landing extends Component {
         } />
       </div>)
   }
+}
+
+function convertCase (string) {
+  let stringArray = string.split(' ')
+  for (var i of stringArray) {
+    var lowercase = i.substr(1)
+    var uppercase = i.charAt(0).toUpperCase()
+    var newWord = uppercase + lowercase
+    var indexnumb = stringArray.indexOf(i)
+    stringArray.splice(indexnumb, 1, newWord)
+  }
+  return stringArray.join(' ')
 }
 
 export default Landing
