@@ -33,6 +33,18 @@
   border: rgb(66, 66, 66) 5px solid
 }
 
+
 .search {
   margin: 0 auto;
 }
+
+.contact {
+  
+}
+.contact-name {}
+.contact-company {} 
+.contact-title {}
+.contact-email {} 
+.contact-phone {} 
+.contact-DOB {} 
+.contact-buttons {}

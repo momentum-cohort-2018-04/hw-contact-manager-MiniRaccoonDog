@@ -3,6 +3,11 @@ import request from 'superagent'
 import uuid from 'uuid-v4'
 import moment from 'moment'
 import Contacts from './Contacts'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 class Landing extends Component {
   constructor () {
@@ -11,7 +16,7 @@ class Landing extends Component {
       user: window.localStorage.user,
       password: window.localStorage.password,
       contacts: [],
-      newcontact: false,
+      backup: [],
       search: '',
       id: '',
       first: '',
@@ -22,7 +27,6 @@ class Landing extends Component {
       dob: '',
       phone: ''
     }
-    this.toggleContact = this.toggleContact.bind(this)
     this.addContact = this.addContact.bind(this)
     this.getALLContacts = this.getALLContacts.bind(this)
     this.setContacts = this.setContacts.bind(this)
@@ -44,6 +48,7 @@ class Landing extends Component {
         .then((response) => {
           console.log(response.body)
           this.setState({contacts: response.body})
+          this.setState({backup: response.body})
         })
     )
   }
@@ -64,10 +69,6 @@ class Landing extends Component {
   } */
   setContacts (newarray) {
     this.setState({contacts: newarray})
-  }
-
-  toggleContact () {
-    this.setState({newcontact: !this.state.newcontact})
   }
 
   addContact () {
@@ -109,7 +110,7 @@ class Landing extends Component {
     event.target.reset()
     const search = this.state.search
     const searchTerm = search.toLowerCase()
-    const oldArray = this.state.contacts
+    const oldArray = this.state.backup
     const results = oldArray.filter(old => {
       let array = Object.values(old).map((value) => {
         if (typeof (value) === 'string') {
@@ -122,7 +123,7 @@ class Landing extends Component {
     })
     this.setState({contacts: results})
   }
-
+  /*
   render () {
     return (
       <React.Fragment>
@@ -185,6 +186,76 @@ class Landing extends Component {
         </table>
       </React.Fragment>
     )
+  } */
+
+  render () {
+    return (
+      <Router>
+        <div>
+          <Route path='/add' render={() =>
+            <fieldset className='contact-form'>
+              <legend >New Contact</legend>
+              <form className='newContact' onSubmit={this.addContact}>
+                <div className='input-group input-icon'>
+                  <i className='fa fa-fw fa-user' />
+                  <input type='text' name='first' placeholder='First Name' onChange={(e) => this.handleChange(e)} />
+                  <input type='text' name='last'placeholder='Last Name' onChange={(e) => this.handleChange(e)} />
+                </div>
+                <div className='med-margin'>
+                  <div className='input-icon'>
+                    <i className='fa fa-fw fa-building' />
+                    <input type='text' name='company' placeholder='Company' onChange={(e) => this.handleChange(e)} />
+                  </div>
+                  <div className='input-icon small-margin'>
+                    <input type='text' name='title' placeholder='Title' onChange={(e) => this.handleChange(e)} />
+                    <i className='fa fa-fw fa-id-card' />
+                  </div>
+                </div>
+                <div className='med-margin'>
+                  <div className='input-icon'>
+                    <input type='text' name='email' placeholder='Email Address' onChange={(e) => this.handleChange(e)} />
+                    <i className='fa fa-fw fa-envelope-o' />
+                  </div>
+                  <div className='input-icon small-margin'>
+                    <i className='fa fa-fw fa-phone' />
+                    <input type='text' name='phone' placeholder='Phone Number' onChange={(e) => this.handleChange(e)} />
+                  </div>
+                </div>
+                <div className='input-icon'>
+                  <i className='fa fa-fw fa-birthday-cake' />
+                  <input type='text' name='dob' placeholder='Date of Birth' onChange={(e) => this.handleChange(e)} />
+                </div>
+                <div className='input-group med-margin'>
+                  <button type='submit' className='button' >Submit</button>
+                  <button type='button' className='button-danger' onClick={this.props.history.goBack}>Cancel</button>
+                </div>
+              </form>
+            </fieldset>
+          } />
+          <Route exact path='/' render={() =>
+            <React.Fragment>
+
+              <Link to='/add'><button type='button' className='button'>Add Contact</button></Link>
+              <form className='search w-50' onSubmit={(e) => this.searchContacts(e)}>
+                <div className='input-group'>
+                  <input type='text' name='search' placeholder='Search Contacts' onChange={(e) => this.handleChange(e)} />
+                  <button type='submit' className='button'>Submit</button>
+
+                </div>
+                <button type='button' className='button' onClick={this.getALLContacts}>Refresh</button>
+              </form>
+              <table className='table-striped table-hoverable'>
+                <thead>
+                  <tr><th>Contact</th><th>Company</th><th>Title</th><th>Email</th><th>Phone Number</th><th>DOB</th></tr>
+                </thead>
+                <tbody>
+                  <Contacts array={this.state.contacts} deleteFxn={this.deleteContact} setContactsFxn={this.setContacts} />
+                </tbody>
+              </table>
+            </React.Fragment>
+          } />
+        </div>
+      </Router>)
   }
 }
 

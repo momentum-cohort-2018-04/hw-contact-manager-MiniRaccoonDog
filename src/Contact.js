@@ -87,7 +87,6 @@ class Contact extends Component {
     const birthdate = moment(entry.dob).format('MM/DD/YY')
     // const statePhone = formatPhone(this.state.phone)
     // const stateDob = moment(this.state.dob).format('MM/DD/YY')
-
     if (!this.state.edit) {
       return (
         <tr className='contact' key={entry.id}>

@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import './App.css'
 import Login from './Login'
 import Landing from './Landing'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
 
 class App extends Component {
   constructor () {
@@ -32,22 +36,21 @@ class App extends Component {
   }
 
   render () {
-    if (!this.state.user && !this.state.password) {
-      return (
-        <div className='main'>
-          <Login storeFxn={this.storeLocal} removeFxn={this.removeLocal} setAuthFxn={this.setAuth} />
+    return (
+      <Router>
+        <div>
+          <Route exact path='/' render={({history}) =>
+            <div className='main'>
+              <Landing history={history} />
+            </div>
+          } />
+          <Route path='/validation' render={() =>
+            <div className='main'>
+              <Login storeFxn={this.storeLocal} removeFxn={this.removeLocal} setAuthFxn={this.setAuth} />
+            </div>
+          } />
         </div>
-
-      )
-    } else if (this.state.user && this.state.password) {
-      return (
-        <div className='main'>
-          <Landing />
-        </div>
-      )
-    } else {
-      return null
-    }
+      </Router>)
   }
 }
 
